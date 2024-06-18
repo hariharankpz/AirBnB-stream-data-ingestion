@@ -19,7 +19,7 @@ phases:
       # - zip -g ../deployment_package_1.zip lamdba_function.py
       # - cd ..
 
-      # #creating zip files for  lamda-to-s3 fucntion
+      #creating zip files for  lamda-to-s3 fucntion
       # - echo "Zipping deployment package for Lambda Function lamda-to-s3..."
       # - cd lib
       # - zip -r9 ../deployment_package_2.zip .
@@ -41,7 +41,7 @@ phases:
     commands:
       - echo "Uploading deployment packages to S3..."
 
-      # # Upload package for Lambda Function 1
+      # Upload package for Lambda Function 1
       # - echo "Uploading deployment package deployment_package_1 to S3..."
       # - aws s3 cp deployment_package_1.zip s3://hh-lambda-builds-zip/
       # - echo "Updating Lambda Function AirBnB-enrichment-filter via S3..."

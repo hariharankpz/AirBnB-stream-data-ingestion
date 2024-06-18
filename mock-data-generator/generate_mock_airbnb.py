@@ -18,7 +18,7 @@ def data_generator():
 def lambda_handler(event,context):
     sqs_client = boto3.client('sqs')
     for i in range(5):
-        sqs_client.send_message(QueueUrl = 'https://sqs.us-east-1.amazonaws.com/533267408419/AirbnbBookingQueue',
+        sqs_client.send_message(QueueUrl = 'https://sqs.us-east-1.amazonaws.com/381491939671/AirbnbBookingQueue',
                             MessageBody = json.dumps(data_generator()))
     
 lambda_handler(1,2)
