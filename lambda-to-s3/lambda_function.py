@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         return {}
     try:
         print('Entering Try Fn')
-        obj = s3_client.get_object(Bucket = 'airbnb-data-store', Key = f'date={today_date}/Airbnb_{today_date}.csv' )
+        obj = s3_client.get_object(Bucket = 'hh-airbnb-data-store', Key = f'date={today_date}/Airbnb_{today_date}.csv' )
         obj = obj['Body'].read()
         s=str( obj ,'utf-8')
         data = io.StringIO(s) 
@@ -29,7 +29,7 @@ def lambda_handler(event, context):
                                     message['location'],message['startDate'],message['endDate'],
                                     message['price']]  
         df.to_csv('/tmp/test.csv',encoding='utf-8')
-        s3_resource.Bucket('airbnb-data-store').upload_file('/tmp/test.csv',f'date={today_date}/Airbnb_{today_date}.csv')
+        s3_resource.Bucket('hh-airbnb-data-store').upload_file('/tmp/test.csv',f'date={today_date}/Airbnb_{today_date}.csv')
         print(df)
     except Exception as e:
         print('Entering Exception')
@@ -41,4 +41,4 @@ def lambda_handler(event, context):
                                 message['location'],message['startDate'],message['endDate'],
                                 message['price']]  
         df.to_csv('/tmp/test.csv',encoding='utf-8')
-        s3_resource.Bucket('airbnb-data-store').upload_file('/tmp/test.csv',f'date={today_date}/Airbnb_{today_date}.csv')
+        s3_resource.Bucket('hh-airbnb-data-store').upload_file('/tmp/test.csv',f'date={today_date}/Airbnb_{today_date}.csv')
