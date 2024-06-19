@@ -1,0 +1,12 @@
+1. lamda function generate_mock_airbnb will generate data and SQS will be feeded with this data - through the this lamda fucntion(similiar to streaming data)
+
+2. SQS has another dead letter queue, if for any reasin processing of any msg by any of the lamda fucntions or any other services in event bridge pipe fails
+    then that msg will go to dead letter queue(Another SQS queue, we need to configure this as DLQ in our orgial SQS).
+    Either we can use another function or application to process the msgs in DLQ after manually looking into errors or we can redrive the
+    msgs back to original SQS 
+
+3. Then SQS msgs will feeded to enrcihement layer lamda fucntion , where this will filter out data where startDate and endDate are same.
+ SQS is configured in such a way that, it will only send one msg at at time to enrcihment lambda fucntion.(batch size is 1). We can di it in batches also(just configure batch size parameter to no. of msgs in a batch size)
+
+
+ 4. Then filtreed msg are given to lambda to s3 function where it will save the msgs in s3 bucket in csv file. If no file is lready presnet in s3, create and write, else append to csv as new row, as data is comming from source. 
